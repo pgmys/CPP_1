@@ -1,0 +1,88 @@
+/*
+Deklaracja tablicy dwuwymiaroweji , funkcja na tej tablicy i losowanie elementó
+*/
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+const int M = 5;
+const int N = 8;
+
+void Losuj (int A[][N])
+{
+ 
+  for (int i=0; i<M; i++)
+    {
+        for (int j=0; j<N; j++)
+        {
+           A[i][j] = rand () % 20; 
+        }
+      
+    }
+}
+
+void Wypisz (int A[])
+{
+  int i;
+  for (i = 0; i < N; i++)
+    {
+      cout << A[i] << " ";
+    }
+  cout << endl;
+}
+
+int DNSPNM (int A[])
+{
+  int maks_dl = 1, akt_dl = 1, i;
+  for (i = 1; i < N; i++)
+    {
+      if (A[i] >= A[i - 1])
+	{
+	  akt_dl++;
+	  if (akt_dl > maks_dl)
+	    maks_dl = akt_dl;
+	}
+      else
+	akt_dl = 1;
+    }
+
+  return maks_dl;
+}
+//============================================================================
+
+int main ()
+{
+  //srand (time (NULL));
+
+  int A[M][N];
+  
+  Losuj(A);
+  
+// wypis tablicy a
+
+for(int i=0; i<M; i++)
+  {
+      for (int j=0; j<N; j++)
+      {
+          cout << A[i][j] << "\t";
+      }
+       cout << endl;
+  }
+  
+// wyswuetlkanie el trzeciej kolumny
+cout <<"\n ======================= \n";
+
+for(int i=0; i<M; i++)
+  {
+      
+          cout << A[i][2] << "\t";
+      
+       cout << endl;
+  }
+
+  
+  return 0;
+}
